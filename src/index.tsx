@@ -34,52 +34,12 @@ function isBetaTestPeriod(): boolean {
   return nowKst < betaEndDate
 }
 
-// 거래 가능 시간 체크 함수
+// 거래 가능 시간 체크 함수 (항상 거래 가능)
 function isTradingTime(): { allowed: boolean; message?: string; isBeta?: boolean } {
-  // 베타 테스트 기간에는 24시간 거래 가능
-  if (isBetaTestPeriod()) {
-    return { 
-      allowed: true, 
-      isBeta: true,
-      message: '🎉 베타 테스트 기간 - 24시간 거래 가능!' 
-    }
-  }
-  
-  const now = getKoreanTime() // 한국 시간 기준
-  const hours = now.getHours()
-  const minutes = now.getMinutes()
-  const currentTime = hours * 60 + minutes // 분 단위로 변환
-  
-  // 장 운영 시간 체크 (08:00 ~ 16:00)
-  if (currentTime < 8 * 60 || currentTime >= 16 * 60) {
-    return { 
-      allowed: false, 
-      message: '장 운영 시간이 아닙니다. (운영시간: 08:00 ~ 16:00 KST)' 
-    }
-  }
-  
-  // 거래 가능 시간대
-  const tradingWindows = [
-    { start: 8 * 60, end: 8 * 60 + 20 },      // 08:00 ~ 08:20
-    { start: 9 * 60 + 10, end: 9 * 60 + 20 }, // 09:10 ~ 09:20
-    { start: 10 * 60 + 10, end: 10 * 60 + 20 }, // 10:10 ~ 10:20
-    { start: 11 * 60 + 10, end: 11 * 60 + 20 }, // 11:10 ~ 11:20
-    { start: 12 * 60 + 10, end: 12 * 60 + 20 }, // 12:10 ~ 12:20
-    { start: 13 * 60, end: 13 * 60 + 10 },     // 13:00 ~ 13:10
-    { start: 14 * 60, end: 14 * 60 + 10 },     // 14:00 ~ 14:10
-    { start: 15 * 60, end: 15 * 60 + 10 },     // 15:00 ~ 15:10
-  ]
-  
-  // 현재 시간이 거래 가능 시간대에 포함되는지 확인
-  for (const window of tradingWindows) {
-    if (currentTime >= window.start && currentTime < window.end) {
-      return { allowed: true }
-    }
-  }
-  
+  // 모든 유저 24시간 거래 가능
   return { 
-    allowed: false, 
-    message: '거래 가능 시간이 아닙니다. 거래 시간을 확인해주세요.' 
+    allowed: true, 
+    message: '✅ 24시간 거래 가능!' 
   }
 }
 
