@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "teacher-sample",
+  "compatibility_date": "2025-11-06",
+  "pages_build_output_dir": "./dist",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "teacher-sample-production",
+      "database_id": "32d80ffb-c16a-4a4e-8584-3dcf73a1fb76"
+    }
+  ]
+}
