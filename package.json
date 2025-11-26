@@ -6,7 +6,7 @@
     "dev:sandbox": "wrangler pages dev dist --d1=webapp-production --local --ip 0.0.0.0 --port 3000",
     "build": "vite build",
     "preview": "wrangler pages dev",
-    "deploy": "echo 'Build complete - Cloudflare Pages handles deployment'",
+    "deploy": "echo 'Deployment ready'",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "db:migrate:local": "wrangler d1 migrations apply webapp-production --local",
     "db:migrate:prod": "wrangler d1 migrations apply webapp-production",
